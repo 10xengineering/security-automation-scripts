@@ -1,12 +1,27 @@
-# siem_alert_triage.py
-
+#!/usr/bin/env python3
 """
-SIEM Alert Triage Script
-------------------------
-Automates fetching, filtering, and creating tickets for actionable SIEM alerts.
-Save your sanity (and your sleep): Cut false positives, keep security teams focused.
+SIEM Alert Triage Script - Your Security Automation Superhero! 🦸‍♀️
+-----------------------------------------------------------------------
+Transform overwhelming alert volumes into focused, actionable insights!
 
-Built by Max Alhourani – because security work should be effective and just a little bit easier!
+This friendly script automates the tedious work of fetching, filtering, 
+and creating tickets for SIEM alerts that actually matter. Think of it as 
+your personal security assistant who never sleeps and never misses the 
+important stuff.
+
+Why you'll love this:
+- Cuts through alert noise like a hot knife through butter
+- Creates clear, actionable Jira tickets (no more cryptic alerts!)
+- Saves hours of manual work every single day
+- Helps you focus on real threats instead of false positives
+
+Built with ❤️ by Max Alhourani – because security work should be 
+both effective AND enjoyable!
+
+Quick start:
+    python siem_alert_triage.py --config your_config.json
+    
+Pro tip: Start with our examples directory for ready-to-use configurations!
 """
 
 import requests

@@ -32,7 +32,7 @@ create_jira_tickets(actionable)  # Only the real threats make it through
 ```
 
 **What it does:** Automatically fetches high/critical severity alerts from your SIEM and creates clear, actionable Jira tickets. No more alert fatigue—just focused security work!  
-📁 **[Complete Splunk example →](./examples/siem_splunk.py)** | **[🆕 Sumo Logic example →](./examples/siem_sumo_logic.py)**
+📁 **[Complete Splunk example →](./examples/siem_splunk.py)** | **[Sumo Logic example →](./examples/siem_sumo_logic.py)**
 
 ---
 

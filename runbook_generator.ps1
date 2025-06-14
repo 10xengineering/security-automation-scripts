@@ -1,13 +1,30 @@
 <# 
-runbook_generator.ps1
+Incident Response Runbook Generator - Your Team's Confidence Builder! 📖🛡️
 
-Need a runbook fast? This script creates clean Markdown incident response guides in seconds.
-Practical, repeatable, and easy to tweak—just like security should be.
+Transform security uncertainty into security readiness with professional, 
+comprehensive incident response playbooks generated in seconds!
 
-Author: Max Alhourani
+Why your team will love this:
+✅ Clear, step-by-step procedures for common security incidents
+✅ Consistent response processes that build confidence
+✅ Professional Markdown format that's easy to read and share
+✅ Customizable templates that grow with your organization
+
+This script creates practical, actionable runbooks that turn 3am security 
+alerts from stressful panic into organized, professional response.
+
+Your team deserves to feel prepared and confident - let's make that happen!
+
+Usage: .\runbook_generator.ps1
+Result: Professional incident response library ready for your team!
+
+Pro tip: Check out examples/custom_runbooks.ps1 for advanced features and 
+organization-specific customization options!
+
+Author: Max Alhourani - Building security tools that empower teams! 🚀
 #>
 
-Write-Host "Ready to generate your incident response runbooks? Let's do this! 💡"
+Write-Host "🌟 Ready to build your team's incident response confidence? Let's create some amazing runbooks!" -ForegroundColor Cyan
 
 # runbook_generator.ps1
 
@@ -44,5 +61,15 @@ foreach ($incident in $incidents) {
     $fileName = "$($incident -replace ' ', '_').md"
     $content = $template -f $incident
     $content | Out-File -FilePath $fileName
-    Write-Host "Created: $fileName"
+    Write-Host "✅ Created: $fileName" -ForegroundColor Green
 }
+
+Write-Host ""
+Write-Host "🎉 Fantastic! Your incident response runbook library is ready!" -ForegroundColor Cyan
+Write-Host "💡 Next steps:" -ForegroundColor Yellow
+Write-Host "   • Review and customize each runbook for your environment"
+Write-Host "   • Share with your team via wiki, SharePoint, or version control"
+Write-Host "   • Practice with tabletop exercises to build familiarity"
+Write-Host "   • Keep them updated as your environment evolves"
+Write-Host ""
+Write-Host "🛡️ Your team is now better prepared for any security incident!" -ForegroundColor Green

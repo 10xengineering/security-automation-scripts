@@ -1,5 +1,4 @@
-{
-  "siem_config": {
+{  "siem_config": {
     "splunk": {
       "host": "splunk.company.com",
       "port": 8089,
@@ -14,6 +13,22 @@
       "username": "elastic_user",
       "password": "ENV:ELASTIC_PASSWORD",
       "index": "security-*"
+    }
+  },
+    "sumo_logic": {
+    "endpoint": "https://api.sumologic.com/api/v1",
+    "access_id": "ENV:SUMO_ACCESS_ID",
+    "access_key": "ENV:SUMO_ACCESS_KEY",
+    "source_category": "security/alerts",
+    "search_timeframe": "24h",
+    "max_results": 100,
+    "time_zone": "UTC",
+    "query_timeout": 300,
+    "collectors": ["security-collector-1", "security-collector-2"],
+    "search_queries": {
+      "high_priority": "_sourceCategory=security/alerts severity in (\"critical\", \"high\")",
+      "failed_logins": "_sourceCategory=auth/logs \"authentication failed\"",
+      "malware_detected": "_sourceCategory=security/antivirus \"malware detected\""
     }
   },
   
