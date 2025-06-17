@@ -1,0 +1,133 @@
+{  "siem_config": {
+    "splunk": {
+      "host": "splunk.company.com",
+      "port": 8089,
+      "username": "service_account",
+      "password": "ENV:SPLUNK_PASSWORD",
+      "index": "security",
+      "search_timeframe": "24h"
+    },
+    "elastic": {
+      "host": "elasticsearch.company.com",
+      "port": 9200,
+      "username": "elastic_user",
+      "password": "ENV:ELASTIC_PASSWORD",
+      "index": "security-*"
+    }
+  },
+    "sumo_logic": {
+    "endpoint": "https://api.sumologic.com/api/v1",
+    "access_id": "ENV:SUMO_ACCESS_ID",
+    "access_key": "ENV:SUMO_ACCESS_KEY",
+    "source_category": "security/alerts",
+    "search_timeframe": "24h",
+    "max_results": 100,
+    "time_zone": "UTC",
+    "query_timeout": 300,
+    "collectors": ["security-collector-1", "security-collector-2"],
+    "search_queries": {
+      "high_priority": "_sourceCategory=security/alerts severity in (\"critical\", \"high\")",
+      "failed_logins": "_sourceCategory=auth/logs \"authentication failed\"",
+      "malware_detected": "_sourceCategory=security/antivirus \"malware detected\""
+    }
+  },
+  
+  "jira_config": {
+    "url": "https://company.atlassian.net",
+    "username": "automation@company.com",
+    "api_token": "ENV:JIRA_API_TOKEN",
+    "project_key": "SEC",
+    "issue_type": "Task",
+    "priority_mapping": {
+      "critical": "Highest",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  },
+  
+  "alert_filters": {
+    "actionable_severities": ["critical", "high"],
+    "ignore_sources": ["test-system", "dev-environment"],
+    "business_hours_only": false,
+    "auto_resolve_after_hours": 24
+  },
+  
+  "compliance_frameworks": {
+    "pci-dss": {
+      "evidence_paths": [
+        "/var/log/auth.log*",
+        "/var/log/secure*",
+        "/etc/ssh/sshd_config",
+        "/etc/apache2/conf*",
+        "/var/log/apache2/access.log*"
+      ],
+      "required_checks": ["firewall_status", "ssl_config", "access_controls"]
+    },
+    "hipaa": {
+      "evidence_paths": [
+        "/var/log/audit/audit.log*",
+        "/etc/audit/auditd.conf",
+        "/var/log/mysql/mysql.log*",
+        "/var/log/postgresql/postgresql-*.log"
+      ],
+      "required_checks": ["audit_config", "database_logs", "encryption_status"]
+    },
+    "sox": {
+      "evidence_paths": [
+        "/var/log/auth.log*",
+        "/var/log/sudo.log*",
+        "/etc/sudoers",
+        "/etc/passwd",
+        "/home/*/.bash_history"
+      ],
+      "required_checks": ["user_access", "privilege_escalation", "change_logs"]
+    }
+  },
+  
+  "runbook_config": {
+    "organization_name": "Your Company Name",
+    "default_output_path": "./runbooks",
+    "contact_info": {
+      "security_operations": {
+        "manager": "Jane Doe",
+        "phone": "+1-555-0100",
+        "email": "security-ops@company.com"
+      },
+      "it_director": {
+        "name": "John Smith",
+        "phone": "+1-555-0101",
+        "email": "it-director@company.com"
+      }
+    },
+    "external_contacts": {
+      "cyber_insurance": {
+        "carrier": "Insurance Company",
+        "phone": "+1-555-0200",
+        "policy_number": "POL123456789"
+      }
+    }
+  },
+  
+  "notification_config": {
+    "slack": {
+      "webhook_url": "ENV:SLACK_WEBHOOK_URL",
+      "channel": "#security-alerts",
+      "severity_channels": {
+        "critical": "#security-critical",
+        "high": "#security-high"
+      }
+    },
+    "email": {
+      "smtp_server": "smtp.company.com",
+      "smtp_port": 587,
+      "username": "alerts@company.com",
+      "password": "ENV:EMAIL_PASSWORD",
+      "recipients": {
+        "critical": ["security-team@company.com", "management@company.com"],
+        "high": ["security-team@company.com"],
+        "medium": ["security-ops@company.com"]
+      }
+    }
+  }
+}
